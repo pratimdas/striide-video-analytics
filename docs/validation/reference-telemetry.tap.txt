@@ -1,0 +1,56 @@
+
+> striideai-local-lab@0.1.0 test:reference
+> node --test examples/telemetry.test.mjs
+
+TAP version 13
+# Subtest: overlap is counted once
+ok 1 - overlap is counted once
+  ---
+  duration_ms: 0.587333
+  type: 'test'
+  ...
+# Subtest: self time subtracts child interval union
+ok 2 - self time subtracts child interval union
+  ---
+  duration_ms: 0.264682
+  type: 'test'
+  ...
+# Subtest: failed operations are timed and rethrown
+ok 3 - failed operations are timed and rethrown
+  ---
+  duration_ms: 1.727788
+  type: 'test'
+  ...
+# Subtest: children preserve parent relationships
+ok 4 - children preserve parent relationships
+  ---
+  duration_ms: 0.207744
+  type: 'test'
+  ...
+# Subtest: secrets are redacted without losing token usage
+ok 5 - secrets are redacted without losing token usage
+  ---
+  duration_ms: 0.237627
+  type: 'test'
+  ...
+# Subtest: unknown cost remains unknown
+ok 6 - unknown cost remains unknown
+  ---
+  duration_ms: 0.541842
+  type: 'test'
+  ...
+# Subtest: known subtotal is not called complete when prices are missing
+ok 7 - known subtotal is not called complete when prices are missing
+  ---
+  duration_ms: 0.137801
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 56.611274

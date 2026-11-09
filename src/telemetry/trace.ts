@@ -90,7 +90,10 @@ export class TraceStore {
  */
 export function recoverInterruptedSpans(traceFile: string): SpanRecord[] {
   if (!existsSync(traceFile)) return [];
-  const lines = readFileSync(traceFile, 'utf8').split('\n').filter(Boolean);
+  const text = readFileSync(traceFile, 'utf8');
+  // A crash can leave a torn final line; recovered records must start on a fresh line.
+  if (text.length && !text.endsWith('\n')) appendFileSync(traceFile, '\n');
+  const lines = text.split('\n').filter(Boolean);
   const starts = new Map<string, SpanStartEvent>();
   const ended = new Set<string>();
   let lastOffset = 0; let lastUtc: string | null = null;

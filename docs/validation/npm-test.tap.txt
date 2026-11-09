@@ -1,0 +1,332 @@
+
+> striideai-local-lab@0.1.0 test
+> node --disable-warning=ExperimentalWarning --import tsx --test --test-concurrency=1 test/*.test.ts
+
+TAP version 13
+# Subtest: VFR clip with non-zero start: evidence frames map to the exact source frame
+ok 1 - VFR clip with non-zero start: evidence frames map to the exact source frame
+  ---
+  duration_ms: 1003.748281
+  type: 'test'
+  ...
+# Subtest: 352-pixel-wide input is upscaled for provider compatibility without claiming detail
+ok 2 - 352-pixel-wide input is upscaled for provider compatibility without claiming detail
+  ---
+  duration_ms: 460.925408
+  type: 'test'
+  ...
+# Subtest: HEVC source gets an H.264 browser playback copy with matching frame timeline
+ok 3 - HEVC source gets an H.264 browser playback copy with matching frame timeline
+  ---
+  duration_ms: 697.286962
+  type: 'test'
+  ...
+# Subtest: rotated source is normalised and rotation recorded
+ok 4 - rotated source is normalised and rotation recorded
+  ---
+  duration_ms: 468.581906
+  type: 'test'
+  ...
+# Subtest: corrupt file is rejected with a clear outcome and timed spans
+ok 5 - corrupt file is rejected with a clear outcome and timed spans
+  ---
+  duration_ms: 50.001781
+  type: 'test'
+  ...
+# Subtest: truncated video fails the decode check
+ok 6 - truncated video fails the decode check
+  ---
+  duration_ms: 180.422268
+  type: 'test'
+  ...
+# Subtest: source hash and counts match the bundled manifest; validation does not repair
+ok 7 - source hash and counts match the bundled manifest; validation does not repair
+  ---
+  duration_ms: 0.943901
+  type: 'test'
+  ...
+# Subtest: property serialisation is reversible for complex values
+ok 8 - property serialisation is reversible for complex values
+  ---
+  duration_ms: 0.453619
+  type: 'test'
+  ...
+# Subtest: capability compiler excludes every numeric metric and keeps qualitative questions
+ok 9 - capability compiler excludes every numeric metric and keeps qualitative questions
+  ---
+  duration_ms: 19.860941
+  type: 'test'
+  ...
+# Subtest: categorical answer vocabularies are excluded with a reason
+ok 10 - categorical answer vocabularies are excluded with a reason
+  ---
+  duration_ms: 0.288678
+  type: 'test'
+  ...
+# Subtest: user-supplied IDs are validated against the graph
+ok 11 - user-supplied IDs are validated against the graph
+  ---
+  duration_ms: 6.209908
+  type: 'test'
+  ...
+# Subtest: relationship traversal outside the allowlist is refused
+ok 12 - relationship traversal outside the allowlist is refused
+  ---
+  duration_ms: 8.695693
+  type: 'test'
+  ...
+# Subtest: live import: idempotent, preserves UIDs, never touches unrelated graphs; partial import never becomes active
+ok 13 - live import: idempotent, preserves UIDs, never touches unrelated graphs; partial import never becomes active
+  ---
+  duration_ms: 4031.057264
+  type: 'test'
+  ...
+# Subtest: fixed mode end-to-end with offline mocks: contract-valid report, honest sections, separate athlete export
+ok 14 - fixed mode end-to-end with offline mocks: contract-valid report, honest sections, separate athlete export
+  ---
+  duration_ms: 3027.86062
+  type: 'test'
+  ...
+# Subtest: athlete exports exclude secrets, paths, telemetry and raw provider output
+ok 15 - athlete exports exclude secrets, paths, telemetry and raw provider output
+  ---
+  duration_ms: 2730.196989
+  type: 'test'
+  ...
+# Subtest: readiness failure terminates with a typed outcome, diagnostic page data and full trace
+ok 16 - readiness failure terminates with a typed outcome, diagnostic page data and full trace
+  ---
+  duration_ms: 922.886734
+  type: 'test'
+  ...
+# Subtest: readiness timeout terminates within the deadline
+ok 17 - readiness timeout terminates within the deadline
+  ---
+  duration_ms: 1593.578981
+  type: 'test'
+  ...
+# Subtest: 429 is retried within budget; retries are separate attempts with backoff spans and unknown cost
+ok 18 - 429 is retried within budget; retries are separate attempts with backoff spans and unknown cost
+  ---
+  duration_ms: 3671.790767
+  type: 'test'
+  ...
+# Subtest: 5xx beyond the retry budget fails with provider_server, not a report
+ok 19 - 5xx beyond the retry budget fails with provider_server, not a report
+  ---
+  duration_ms: 1942.623107
+  type: 'test'
+  ...
+# Subtest: truncated Pegasus output is not used
+ok 20 - truncated Pegasus output is not used
+  ---
+  duration_ms: 984.7061
+  type: 'test'
+  ...
+# Subtest: conflicting sport label: recognition questions and a bounded follow-up; no irrelevant drills
+ok 21 - conflicting sport label: recognition questions and a bounded follow-up; no irrelevant drills
+  ---
+  duration_ms: 3809.939288
+  type: 'test'
+  ...
+# Subtest: unresolved conflict stays uncertain: needs_context instead of a guess
+ok 22 - unresolved conflict stays uncertain: needs_context instead of a guess
+  ---
+  duration_ms: 3535.874198
+  type: 'test'
+  ...
+# Subtest: missing view yields not_assessable, never a zero skill score
+ok 23 - missing view yields not_assessable, never a zero skill score
+  ---
+  duration_ms: 2650.590781
+  type: 'test'
+  ...
+# Subtest: numeric pose claims and unsafe text from the model are rejected or withheld
+ok 24 - numeric pose claims and unsafe text from the model are rejected or withheld
+  ---
+  duration_ms: 2668.279056
+  type: 'test'
+  ...
+# Subtest: model error still produces diagnostics and no successful report
+ok 25 - model error still produces diagnostics and no successful report
+  ---
+  duration_ms: 2740.337541
+  type: 'test'
+  ...
+# Subtest: corrupt input is rejected with a full timing trace
+ok 26 - corrupt input is rejected with a full timing trace
+  ---
+  duration_ms: 523.003074
+  type: 'test'
+  ...
+# Subtest: result cache: a re-run makes a new run record with zero new provider usage; warm asset reuse is labelled
+ok 27 - result cache: a re-run makes a new run record with zero new provider usage; warm asset reuse is labelled
+  ---
+  duration_ms: 5266.551103
+  type: 'test'
+  ...
+# Subtest: resume reuses checkpointed media and completed requests with provenance
+ok 28 - resume reuses checkpointed media and completed requests with provenance
+  ---
+  duration_ms: 4618.181286
+  type: 'test'
+  ...
+# Subtest: Code Mode: invalid generated program is rejected, repaired program runs in the restricted executor
+ok 29 - Code Mode: invalid generated program is rejected, repaired program runs in the restricted executor
+  ---
+  duration_ms: 2927.502571
+  type: 'test'
+  ...
+# Subtest: Code Mode without a valid generated program falls back to the reviewed program inside the sandbox (not host eval)
+ok 30 - Code Mode without a valid generated program falls back to the reviewed program inside the sandbox (not host eval)
+  ---
+  duration_ms: 2908.277154
+  type: 'test'
+  ...
+# Subtest: Code Mode host limits: a program that exceeds the tool-call budget is denied
+ok 31 - Code Mode host limits: a program that exceeds the tool-call budget is denied
+  ---
+  duration_ms: 719.624644
+  type: 'test'
+  ...
+# Subtest: restricted executor self-test: every denied capability is denied and the broker is reachable
+ok 32 - restricted executor self-test: every denied capability is denied and the broker is reachable
+  ---
+  duration_ms: 52.125435
+  type: 'test'
+  ...
+# Subtest: sandbox environment does not inherit secrets or Node/Deno configuration
+ok 33 - sandbox environment does not inherit secrets or Node/Deno configuration
+  ---
+  duration_ms: 0.188691
+  type: 'test'
+  ...
+# Subtest: static policy rejects imports, runtime access, code generation and unknown tools
+ok 34 - static policy rejects imports, runtime access, code generation and unknown tools
+  ---
+  duration_ms: 1.824394
+  type: 'test'
+  ...
+# Subtest: runtime denial even if static validation were bypassed: files, env, processes and unauthenticated broker calls
+ok 35 - runtime denial even if static validation were bypassed: files, env, processes and unauthenticated broker calls
+  ---
+  duration_ms: 31.555216
+  type: 'test'
+  ...
+# Subtest: tool calls go through the broker; host errors surface as denials
+ok 36 - tool calls go through the broker; host errors surface as denials
+  ---
+  duration_ms: 29.994043
+  type: 'test'
+  ...
+# Subtest: watchdog terminates runaway code
+ok 37 - watchdog terminates runaway code
+  ---
+  duration_ms: 1507.990053
+  type: 'test'
+  ...
+# Subtest: stdout cap terminates oversized output
+ok 38 - stdout cap terminates oversized output
+  ---
+  duration_ms: 24.984198
+  type: 'test'
+  ...
+# Subtest: long host task suspends the segment and resumes by deterministic replay
+ok 39 - long host task suspends the segment and resumes by deterministic replay
+  ---
+  duration_ms: 2561.179954
+  type: 'test'
+  ...
+# Subtest: non-deterministic programs are rejected on replay
+ok 40 - non-deterministic programs are rejected on replay
+  ---
+  duration_ms: 1859.473464
+  type: 'test'
+  ...
+# Subtest: generated code cannot write into the project
+ok 41 - generated code cannot write into the project
+  ---
+  duration_ms: 27.519137
+  type: 'test'
+  ...
+# Subtest: media route supports byte ranges with the correct MIME type
+ok 42 - media route supports byte ranges with the correct MIME type
+  ---
+  duration_ms: 3194.771786
+  type: 'test'
+  ...
+# Subtest: path restrictions: no traversal, unknown media IDs or arbitrary files
+ok 43 - path restrictions: no traversal, unknown media IDs or arbitrary files
+  ---
+  duration_ms: 21.159971
+  type: 'test'
+  ...
+# Subtest: athlete export endpoints exclude internal data; console and diagnostics render
+ok 44 - athlete export endpoints exclude internal data; console and diagnostics render
+  ---
+  duration_ms: 27.933565
+  type: 'test'
+  ...
+# Subtest: coach feedback is saved against the exact report version and validated
+ok 45 - coach feedback is saved against the exact report version and validated
+  ---
+  duration_ms: 11.720787
+  type: 'test'
+  ...
+# Subtest: clicking an evidence timestamp seeks the browser video to the matching source frame
+ok 46 - clicking an evidence timestamp seeks the browser video to the matching source frame
+  ---
+  duration_ms: 2027.391867
+  type: 'test'
+  ...
+# Subtest: age 11 excludes a minimum-age-12 drill; unknown age never passes; 12 passes when approved
+ok 47 - age 11 excludes a minimum-age-12 drill; unknown age never passes; 12 passes when approved
+  ---
+  duration_ms: 2.689269
+  type: 'test'
+  ...
+# Subtest: claim check catches unsupported claim types
+ok 48 - claim check catches unsupported claim types
+  ---
+  duration_ms: 0.278608
+  type: 'test'
+  ...
+# Subtest: CSV cells from untrusted text are formula-escaped
+ok 49 - CSV cells from untrusted text are formula-escaped
+  ---
+  duration_ms: 0.249602
+  type: 'test'
+  ...
+# Subtest: config rejects unknown keys and unsafe guardrail changes, listing every error
+ok 50 - config rejects unknown keys and unsafe guardrail changes, listing every error
+  ---
+  duration_ms: 25.011971
+  type: 'test'
+  ...
+# Subtest: crash recovery closes unfinished spans as interrupted; torn lines are ignored
+ok 51 - crash recovery closes unfinished spans as interrupted; torn lines are ignored
+  ---
+  duration_ms: 2.189921
+  type: 'test'
+  ...
+# Subtest: provider schema translation removes unsupported keywords and keeps null unions
+ok 52 - provider schema translation removes unsupported keywords and keeps null unions
+  ---
+  duration_ms: 80.824843
+  type: 'test'
+  ...
+# Subtest: cost estimates need every rate; incompatible rates are not combined; null is never zero
+ok 53 - cost estimates need every rate; incompatible rates are not combined; null is never zero
+  ---
+  duration_ms: 0.584714
+  type: 'test'
+  ...
+1..53
+# tests 53
+# suites 0
+# pass 53
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 81021.315685

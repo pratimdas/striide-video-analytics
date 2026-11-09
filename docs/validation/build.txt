@@ -1,0 +1,4 @@
+
+> striideai-local-lab@0.1.0 build
+> tsc -p tsconfig.json --noEmit && node --check src/orchestration/codemode/bootstrap.template.js && node --check programs/reviewed/default-v1.js
+

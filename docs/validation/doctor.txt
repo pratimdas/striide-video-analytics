@@ -1,0 +1,33 @@
+
+> striideai-local-lab@0.1.0 doctor
+> node --disable-warning=ExperimentalWarning --import tsx src/cli/doctor.ts --config config.local.yaml
+
+StriideAi local lab doctor (no paid inference)
+
+OK    node                 Node 22.23.4 (requires >= 22.13 for node:sqlite and loadEnvFile)
+OK    config               valid; resolved-config hash 8dd72f200d8a (secrets excluded); mode ontology_code
+FAIL  inputs               missing for analysis (all listed):
+      - TWELVE_LABS_API_KEY (TwelveLabs API key) is not set
+      - GEMINI_API_KEY (Gemini API key) is not set
+      - GEMINI_INSPECTOR_MODEL (Gemini inspector model ID) is not set
+      - GEMINI_PLANNER_MODEL (Gemini planner model ID, required for ontology_code) is not set
+OK    ffmpeg               ffmpeg version 6.1.1-3ubuntu5 Copyright (c) 2000-2023 the FFmpeg developers
+OK    ffprobe              ffprobe version 6.1.1-3ubuntu5 Copyright (c) 2007-2023 the FFmpeg developers
+OK    ffmpeg.libx264       H.264 encoder available
+OK    deno                 deno 2.9.6 (stable, release, x86_64-unknown-linux-gnu) (pinned npm package)
+OK    code_mode.sandbox    restricted executor denies 13 capabilities; broker reachable
+OK    output_root          ./runs writable
+OK    input_root           1 video file(s) registered under ./videos
+OK    ontology.source      sha256 145700e7ac5e3307…, 7172 nodes, 19803 relationships (matches bundled manifest)
+OK    ontology.overlay     recognition overlay draft-0.1 (draft; not validated)
+OK    approvals            local-approval-0: 0 drills, 0 rubrics approved (scores stay unavailable)
+WARN  pricing              unset: 12 unknown rate(s); unknown costs are reported as unknown, never zero
+OK    falkordb.connect     connected to 127.0.0.1:6380
+OK    ontology.import      graph striide_lab_145700e7ac5e3307: 7172 nodes / 19803 relationships live; imported 2026-11-09T00:37:53.221Z; image digest falkordb/falkordb@sha256:bef8acb1d8ed9ff8d2ea251767e75c6c05cfa759f7c6bc7e1c122f27d0ea4d7f
+OK    falkordb.image       falkordb/falkordb@sha256:bef8acb1d8ed9ff8d2ea251767e75c6c05cfa759f7c6bc7e1c122f27d0ea4d7f — pin FALKORDB_IMAGE to this digest before comparable runs
+OK    server.port          127.0.0.1:8788 available
+OK    reference_search     disabled (no curated index)
+OK    scoring              disabled until a reviewed rubric is configured
+OK    docker               Docker server 29.9.2
+
+1 check(s) failed.

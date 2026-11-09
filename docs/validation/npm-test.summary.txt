@@ -1,0 +1,58 @@
+ok 1 - VFR clip with non-zero start: evidence frames map to the exact source frame
+ok 2 - 352-pixel-wide input is upscaled for provider compatibility without claiming detail
+ok 3 - HEVC source gets an H.264 browser playback copy with matching frame timeline
+ok 4 - rotated source is normalised and rotation recorded
+ok 5 - corrupt file is rejected with a clear outcome and timed spans
+ok 6 - truncated video fails the decode check
+ok 7 - source hash and counts match the bundled manifest; validation does not repair
+ok 8 - property serialisation is reversible for complex values
+ok 9 - capability compiler excludes every numeric metric and keeps qualitative questions
+ok 10 - categorical answer vocabularies are excluded with a reason
+ok 11 - user-supplied IDs are validated against the graph
+ok 12 - relationship traversal outside the allowlist is refused
+ok 13 - live import: idempotent, preserves UIDs, never touches unrelated graphs; partial import never becomes active
+ok 14 - fixed mode end-to-end with offline mocks: contract-valid report, honest sections, separate athlete export
+ok 15 - athlete exports exclude secrets, paths, telemetry and raw provider output
+ok 16 - readiness failure terminates with a typed outcome, diagnostic page data and full trace
+ok 17 - readiness timeout terminates within the deadline
+ok 18 - 429 is retried within budget; retries are separate attempts with backoff spans and unknown cost
+ok 19 - 5xx beyond the retry budget fails with provider_server, not a report
+ok 20 - truncated Pegasus output is not used
+ok 21 - conflicting sport label: recognition questions and a bounded follow-up; no irrelevant drills
+ok 22 - unresolved conflict stays uncertain: needs_context instead of a guess
+ok 23 - missing view yields not_assessable, never a zero skill score
+ok 24 - numeric pose claims and unsafe text from the model are rejected or withheld
+ok 25 - model error still produces diagnostics and no successful report
+ok 26 - corrupt input is rejected with a full timing trace
+ok 27 - result cache: a re-run makes a new run record with zero new provider usage; warm asset reuse is labelled
+ok 28 - resume reuses checkpointed media and completed requests with provenance
+ok 29 - Code Mode: invalid generated program is rejected, repaired program runs in the restricted executor
+ok 30 - Code Mode without a valid generated program falls back to the reviewed program inside the sandbox (not host eval)
+ok 31 - Code Mode host limits: a program that exceeds the tool-call budget is denied
+ok 32 - restricted executor self-test: every denied capability is denied and the broker is reachable
+ok 33 - sandbox environment does not inherit secrets or Node/Deno configuration
+ok 34 - static policy rejects imports, runtime access, code generation and unknown tools
+ok 35 - runtime denial even if static validation were bypassed: files, env, processes and unauthenticated broker calls
+ok 36 - tool calls go through the broker; host errors surface as denials
+ok 37 - watchdog terminates runaway code
+ok 38 - stdout cap terminates oversized output
+ok 39 - long host task suspends the segment and resumes by deterministic replay
+ok 40 - non-deterministic programs are rejected on replay
+ok 41 - generated code cannot write into the project
+ok 42 - media route supports byte ranges with the correct MIME type
+ok 43 - path restrictions: no traversal, unknown media IDs or arbitrary files
+ok 44 - athlete export endpoints exclude internal data; console and diagnostics render
+ok 45 - coach feedback is saved against the exact report version and validated
+ok 46 - clicking an evidence timestamp seeks the browser video to the matching source frame
+ok 47 - age 11 excludes a minimum-age-12 drill; unknown age never passes; 12 passes when approved
+ok 48 - claim check catches unsupported claim types
+ok 49 - CSV cells from untrusted text are formula-escaped
+ok 50 - config rejects unknown keys and unsafe guardrail changes, listing every error
+ok 51 - crash recovery closes unfinished spans as interrupted; torn lines are ignored
+ok 52 - provider schema translation removes unsupported keywords and keeps null unions
+ok 53 - cost estimates need every rate; incompatible rates are not combined; null is never zero
+# tests 53
+# pass 53
+# fail 0
+# skipped 0
+# duration_ms 81021.315685

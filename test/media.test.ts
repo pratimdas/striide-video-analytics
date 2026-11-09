@@ -34,8 +34,8 @@ test('VFR clip with non-zero start: evidence frames map to the exact source fram
     assert.equal(got, f.frame_index, `extracted frame for t=${f.t.toFixed(3)} is frame ${got}, expected ${f.frame_index}`);
   }
   // Index/average-fps mapping would be wrong for this clip, demonstrating why a per-frame map is used.
-  const naive = Math.round(map.frame_times[29]! * (map.avg_fps ?? 30));
-  assert.notEqual(naive, 29);
+  const naive = Math.round(map.frame_times[15]! * (map.avg_fps ?? 30));
+  assert.notEqual(naive, 15, 'index/average-fps would pick the wrong frame mid-clip');
   const names = trace.spans.map((s) => s.name);
   for (const n of ['hashing', 'source_snapshot', 'ffprobe', 'decode_check', 'resize_transcode']) assert.ok(names.includes(n), `span ${n}`);
 });
