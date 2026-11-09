@@ -16,3 +16,6 @@ examples/demo-output/
 
 .claude/settings.local.json
 CLAUDE.local.md
+# Claude build folder additions
+test-output/
+*.tsbuildinfo
