@@ -1,0 +1,104 @@
+version: 1
+experiment:
+  mode: ontology_code # ontology_fixed | ontology_code
+  label: local-first-pass
+server:
+  host: 127.0.0.1
+  port: 8787
+paths:
+  input_root: C:/StriideAiLab/videos
+  output_root: ./runs
+  ontology_file: ./data/striide-ontology-all.json
+  context_file: null # Optional context.local.json; null is a real no-context run
+  approved_content_file: ./approved-content.example.json
+  pricing_file: ./pricing.example.json
+providers:
+  twelvelabs:
+    base_url: https://api.twelvelabs.io/v1.3
+    api_key_env: TWELVE_LABS_API_KEY
+    model: pegasus1.6
+    upload_method: direct_asset
+    direct_upload_limit_mb: 180 # Lab guardrail, not a claim about every account's limit
+    poll_interval_ms: 2000
+    readiness_timeout_ms: 180000
+    request_timeout_ms: 180000
+    max_output_tokens: 8000
+    disable_optional_hls_and_thumbnails: true
+  gemini:
+    api_key_env: GEMINI_API_KEY
+    planner_model_env: GEMINI_PLANNER_MODEL
+    inspector_model_env: GEMINI_INSPECTOR_MODEL
+    evidence_transport: inline_ordered_frames
+    request_timeout_ms: 180000
+    planner_max_output_tokens: 4000
+    inspector_max_output_tokens: 10000
+    temperature: 0
+ontology:
+  backend: falkordb # json_snapshot is diagnostics only; never silently substitute it
+  host_env: FALKORDB_HOST
+  port_env: FALKORDB_PORT
+  username_env: FALKORDB_USERNAME
+  password_env: FALKORDB_PASSWORD
+  tls_env: FALKORDB_TLS
+  graph_prefix: striide_lab
+  import_manifest: ./data/ontology-import.local.json
+  require_import_verified: true
+  import_strategy: content_addressed
+  recognition_overlay: ./data/recognition-profiles.draft.json
+  maximum_protocols_per_run: 3
+  maximum_questions_per_run: 12
+  query_timeout_ms: 5000
+media:
+  ffmpeg_env: FFMPEG_BIN
+  ffprobe_env: FFPROBE_BIN
+  max_duration_seconds: 300
+  max_file_size_mb: 180
+  max_evidence_frames_total: 48
+  max_frames_per_packet: 12
+  max_total_inline_evidence_mb: 12
+  resize_for_provider_compatibility: true
+  preserve_aspect_ratio: true
+  generate_h264_playback_copy_if_needed: true
+code_mode:
+  enabled: true
+  executor: deno_restricted
+  deno_bin_env: DENO_BIN
+  reuse_reviewed_programs: true
+  max_planner_turns: 2
+  max_execution_segments: 8
+  max_tool_calls: 20
+  execution_segment_timeout_ms: 10000 # Bound local code/RPC dispatch, not remote model completion
+  max_stdout_bytes: 65536
+  expose_filesystem: false
+  expose_environment: false
+reference_search:
+  enabled: false
+  index_id: null
+budgets:
+  max_generated_model_requests: 5 # Initial discovery + inspection + up to 2 planner turns + 1 follow-up
+  max_followup_model_requests: 1
+  max_generation_attempts_including_retries: 7
+  max_job_wall_time_ms: 900000
+  max_concurrent_jobs: 1
+  max_retries_per_request: 1
+  max_http_attempts_per_job: 120 # Includes readiness polling, not just generation
+  require_known_prices: false
+  max_estimated_run_cost_usd: null # Enable only with complete conservative prices/cost bounds
+assessment:
+  experimental_scoring: false
+  require_reviewed_rubric: true
+  allow_pose_metrics: false
+  narration: reviewed_templates
+  preserve_unassessable_sections: true
+reports:
+  brand_directory: ./brand
+  include_internal_dashboard: true
+  athlete_exports_exclude_internal_data: true
+  save_redacted_raw_artifacts: true
+  trace_format: jsonl
+  write_metrics_csv: true
+  print_to_pdf: true
+cache:
+  reuse_provider_uploads: true
+  result_cache: true
+  cache_scope: content_plus_all_versions

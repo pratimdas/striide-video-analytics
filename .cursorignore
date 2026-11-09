@@ -1,0 +1,9 @@
+.env
+.env.*
+!.env.example
+videos/
+runs/
+.cache/
+node_modules/
+data/striide-ontology-all.json
+data/ontology-import.local.json

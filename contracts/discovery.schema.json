@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Discovery",
+  "type": "object",
+  "required": [
+    "candidates",
+    "action_windows",
+    "observations",
+    "target",
+    "limitations"
+  ],
+  "properties": {
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sport_uid",
+          "skill_label",
+          "supporting_evidence",
+          "contradicting_evidence",
+          "uncertainty"
+        ],
+        "properties": {
+          "sport_uid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "skill_label": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "activity_type": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "supporting_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "contradicting_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uncertainty": {
+            "enum": [
+              "low",
+              "medium",
+              "high",
+              "unknown"
+            ]
+          },
+          "distinguishing_questions": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "action_windows": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "window_id",
+          "start_seconds",
+          "end_seconds",
+          "label"
+        ],
+        "properties": {
+          "window_id": {
+            "type": "string"
+          },
+          "start_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end_seconds": {
+            "type": "number",
+            "minimum": 0
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "observation_id",
+          "text",
+          "window_ids"
+        ],
+        "properties": {
+          "observation_id": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "window_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "target": {
+      "type": "object",
+      "required": [
+        "state",
+        "description"
+      ],
+      "properties": {
+        "state": {
+          "enum": [
+            "single_subject",
+            "specified_subject",
+            "ambiguous",
+            "none"
+          ]
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

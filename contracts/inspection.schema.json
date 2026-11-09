@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Inspection",
+  "type": "object",
+  "required": [
+    "activity_verdict",
+    "answers",
+    "findings",
+    "limitations"
+  ],
+  "properties": {
+    "activity_verdict": {
+      "type": "object",
+      "required": [
+        "sport_uid",
+        "state",
+        "evidence_ids"
+      ],
+      "properties": {
+        "sport_uid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "enum": [
+            "established",
+            "provisional",
+            "unknown"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "answers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "question_id",
+          "answer",
+          "visibility",
+          "state",
+          "observation",
+          "evidence_ids"
+        ],
+        "properties": {
+          "question_id": {
+            "type": "string"
+          },
+          "answer": {
+            "enum": [
+              "yes",
+              "partly",
+              "no",
+              null
+            ]
+          },
+          "visibility": {
+            "enum": [
+              "visible",
+              "partly_visible",
+              "not_visible",
+              "uncertain"
+            ]
+          },
+          "state": {
+            "enum": [
+              "supported",
+              "contradicted",
+              "not_assessable",
+              "uncertain"
+            ]
+          },
+          "observation": {
+            "type": "string"
+          },
+          "evidence_ids": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "uncertainty": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": [
+        "finding_id",
+        "question_id",
+        "observation",
+        "evidence_ids",
+        "state",
+        "measurement_kind"
+      ],
+      "properties": {
+        "finding_id": {
+          "type": "string"
+        },
+        "question_id": {
+          "type": "string"
+        },
+        "observation": {
+          "type": "string"
+        },
+        "interpretation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "contradicted",
+            "not_assessable",
+            "uncertain"
+          ]
+        },
+        "measurement_kind": {
+          "enum": [
+            "observed",
+            "inferred",
+            "measured",
+            "not_assessable"
+          ]
+        },
+        "numeric_value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "uncertainty": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_content_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

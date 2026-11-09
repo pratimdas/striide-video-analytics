@@ -1,0 +1,31 @@
+{
+  "schema_version": "lab-report-0.1",
+  "run_id": "layout-fixture-not-a-real-analysis",
+  "status": "completed_partial",
+  "activity": {
+    "sport_uid": null,
+    "skill_uid": null,
+    "state": "unknown"
+  },
+  "context": {},
+  "summary": "Layout fixture only. Replace this with validated findings from an actual run.",
+  "findings": [],
+  "evidence": [],
+  "scores": {
+    "eligible": false,
+    "overall": null,
+    "rubric_id": null,
+    "reason": "No live analysis or reviewed rubric is supplied by this fixture.",
+    "criteria": []
+  },
+  "limitations": [
+    "No video has been analysed in this fixture."
+  ],
+  "recommendations": [],
+  "phases": [],
+  "pillar_support": {},
+  "provenance": {
+    "fixture": true
+  },
+  "sections": {}
+}

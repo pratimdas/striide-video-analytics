@@ -1,0 +1,39 @@
+{
+  "source_filename": "striide-ontology-all.json",
+  "sha256": "145700e7ac5e33070984abb4ffdc1f0ab0a9a0038b0b012b853828f16da2bd0e",
+  "declared_content_hash": "sha256:9827ac5ea7949f990d0d2d991287b739c31fb2a2b1057f5cf47037cbdd48024e",
+  "built_at": "2026-11-06T02:59:21Z",
+  "counts": {
+    "nodes": 7172,
+    "edges": 19803,
+    "byLabel": {
+      "ActivityType": 5,
+      "Capability": 9,
+      "Detector": 45,
+      "Discipline": 236,
+      "Drill": 346,
+      "Equipment": 411,
+      "Event": 666,
+      "Fault": 760,
+      "Format": 240,
+      "Gap": 443,
+      "Lens": 529,
+      "Measure": 169,
+      "Metric": 774,
+      "Ontology": 1,
+      "Phase": 420,
+      "Protocol": 187,
+      "Release": 60,
+      "Role": 221,
+      "Skill": 627,
+      "Source": 473,
+      "Sport": 60,
+      "Strength": 220,
+      "VlmQuestion": 270
+    }
+  },
+  "node_count": 7172,
+  "edge_count": 19803,
+  "format": "striide.ontology.graph.combined",
+  "immutable_source": true
+}

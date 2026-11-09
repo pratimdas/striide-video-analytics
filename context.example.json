@@ -1,0 +1,13 @@
+{
+  "sport": null,
+  "discipline": null,
+  "skill": null,
+  "format": null,
+  "age_years": null,
+  "athlete_id": null,
+  "target_person_hint": null,
+  "goal": null,
+  "handedness": null,
+  "ball_type": null,
+  "consent_confirmed": false
+}

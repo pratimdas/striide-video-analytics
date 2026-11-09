@@ -1,0 +1,274 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://striideai.local/schemas/lab-contract-v0.1.json",
+  "title": "StriideAi local lab report v0.1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "run_id",
+    "status",
+    "activity",
+    "context",
+    "summary",
+    "findings",
+    "evidence",
+    "scores",
+    "limitations",
+    "provenance"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "lab-report-0.1"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "completed_partial",
+        "needs_context",
+        "rejected",
+        "failed",
+        "cancelled"
+      ]
+    },
+    "activity": {
+      "type": "object",
+      "required": [
+        "sport_uid",
+        "skill_uid",
+        "state"
+      ],
+      "properties": {
+        "sport_uid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skill_uid": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "state": {
+          "enum": [
+            "established",
+            "provisional",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "context": {
+      "type": "object"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/finding"
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/evidence"
+      }
+    },
+    "scores": {
+      "type": "object",
+      "required": [
+        "eligible",
+        "overall",
+        "rubric_id",
+        "reason"
+      ],
+      "properties": {
+        "eligible": {
+          "type": "boolean"
+        },
+        "overall": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "rubric_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "criteria": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "pillar_support": {
+      "type": "object"
+    },
+    "provenance": {
+      "type": "object"
+    },
+    "sections": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "finding": {
+      "type": "object",
+      "required": [
+        "finding_id",
+        "question_id",
+        "observation",
+        "evidence_ids",
+        "state",
+        "measurement_kind"
+      ],
+      "properties": {
+        "finding_id": {
+          "type": "string"
+        },
+        "question_id": {
+          "type": "string"
+        },
+        "observation": {
+          "type": "string"
+        },
+        "interpretation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "state": {
+          "enum": [
+            "supported",
+            "contradicted",
+            "not_assessable",
+            "uncertain"
+          ]
+        },
+        "measurement_kind": {
+          "enum": [
+            "observed",
+            "inferred",
+            "measured",
+            "not_assessable"
+          ]
+        },
+        "numeric_value": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "unit": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "uncertainty": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "approved_content_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "evidence_id",
+        "start_seconds",
+        "end_seconds",
+        "source_media_id",
+        "visibility"
+      ],
+      "properties": {
+        "evidence_id": {
+          "type": "string"
+        },
+        "source_media_id": {
+          "type": "string"
+        },
+        "start_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "end_seconds": {
+          "type": "number",
+          "minimum": 0
+        },
+        "frame_pts_seconds": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          }
+        },
+        "visibility": {
+          "enum": [
+            "visible",
+            "partly_visible",
+            "not_visible",
+            "uncertain"
+          ]
+        },
+        "artifact_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "version": "draft-0.1",
+  "review_status": "draft",
+  "profiles": [
+    {
+      "sport_uid": "sport:cricket",
+      "activity": "pace_bowling",
+      "supporting_sequence": [
+        "approach or gather",
+        "delivery stride with overarm ball delivery",
+        "continuing follow-through"
+      ],
+      "shared_cues_not_decisive": [
+        "indoor court markings",
+        "overhead arm movement",
+        "small round ball"
+      ],
+      "confusions": [
+        "netball overhead throw",
+        "generic overarm throw"
+      ],
+      "questions": [
+        "Does the full action sequence support a cricket bowling delivery rather than a pass?",
+        "Are the ball, target and delivery stride sufficiently visible to distinguish candidates?"
+      ]
+    },
+    {
+      "sport_uid": "sport:netball",
+      "activity": "passing",
+      "supporting_sequence": [
+        "ball possession and preparation",
+        "directed passing action",
+        "receiver or target context when visible"
+      ],
+      "shared_cues_not_decisive": [
+        "court markings",
+        "overhead movement"
+      ],
+      "confusions": [
+        "cricket bowling gather",
+        "generic throwing"
+      ],
+      "questions": [
+        "Is this a passing sequence or a bowling delivery sequence?",
+        "Does evidence support chest, overhead or another pass type, or is it not assessable?"
+      ]
+    }
+  ]
+}

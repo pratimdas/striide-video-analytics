@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "labels_are_not_model_inputs": true,
+  "cases": [
+    {
+      "case_id": "cycling_01",
+      "video": "replace-with-cycling-clip.mp4",
+      "context": null,
+      "expected_activity": "cycling",
+      "source_pair": "A/B",
+      "review_notes": "Check unsupported claims, moving camera and missing specialist protocol."
+    },
+    {
+      "case_id": "junior_bowling_01",
+      "video": "replace-with-junior-bowling.mp4",
+      "context": null,
+      "expected_activity": "cricket bowling",
+      "source_pair": "C/D",
+      "review_notes": "First no-context; separate contextual run may declare age 11 and indoor softball. Do not leak it into no-context prompts."
+    },
+    {
+      "case_id": "lowres_batting_01",
+      "video": "replace-with-lowres-batting.mp4",
+      "context": null,
+      "expected_activity": "cricket batting",
+      "source_pair": "E/F",
+      "review_notes": "Inspect ingestion separately from visual assessment. Original E error is not supplied."
+    },
+    {
+      "case_id": "sport_confusion_01",
+      "video": "replace-with-confusion-clip.mp4",
+      "context": null,
+      "expected_activity": "cricket bowling",
+      "source_pair": "G/H",
+      "review_notes": "Cricket vs netball. Competitor grade and cues are not ground truth."
+    },
+    {
+      "case_id": "unknown_01",
+      "video": "replace-with-unknown-activity.mp4",
+      "context": null,
+      "expected_activity": null,
+      "review_notes": "Unknown/out-of-protocol recognition and useful abstention."
+    },
+    {
+      "case_id": "multiple_01",
+      "video": "replace-with-multiple-athletes.mp4",
+      "context": null,
+      "expected_activity": null,
+      "review_notes": "Target ambiguity and multiple attempts."
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "event",
+    "run_id",
+    "trace_id",
+    "span_id",
+    "parent_span_id",
+    "name",
+    "start_utc",
+    "end_utc",
+    "start_offset_ms",
+    "end_offset_ms",
+    "duration_ms",
+    "status",
+    "attributes"
+  ],
+  "properties": {
+    "event": {
+      "const": "span_end"
+    },
+    "run_id": {
+      "type": "string"
+    },
+    "trace_id": {
+      "type": "string"
+    },
+    "span_id": {
+      "type": "string"
+    },
+    "parent_span_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "name": {
+      "type": "string"
+    },
+    "start_utc": {
+      "type": "string"
+    },
+    "end_utc": {
+      "type": "string"
+    },
+    "start_offset_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "end_offset_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "duration_ms": {
+      "type": "number",
+      "minimum": 0
+    },
+    "status": {
+      "enum": [
+        "ok",
+        "error",
+        "cancelled",
+        "interrupted"
+      ]
+    },
+    "attributes": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": false
+}

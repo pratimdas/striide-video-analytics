@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "notice": "Blank evaluation template; no agents have been benchmarked by this pack.",
+  "builds": [],
+  "categories": [
+    {
+      "id": "setup_ontology",
+      "weight": 15
+    },
+    {
+      "id": "provider_flow",
+      "weight": 20
+    },
+    {
+      "id": "evidence_assessment",
+      "weight": 20
+    },
+    {
+      "id": "report_ux",
+      "weight": 15
+    },
+    {
+      "id": "telemetry",
+      "weight": 10
+    },
+    {
+      "id": "maintainability",
+      "weight": 10
+    },
+    {
+      "id": "time_human_effort",
+      "weight": 5
+    },
+    {
+      "id": "coding_usage_cost",
+      "weight": 5
+    }
+  ],
+  "build_template": {
+    "agent": null,
+    "agent_version": null,
+    "coding_model": null,
+    "effort_setting": null,
+    "environment": null,
+    "spec_snapshot_hash": null,
+    "started_at": null,
+    "first_verified_working_at": null,
+    "finished_at": null,
+    "human_active_minutes": null,
+    "intervention_count": null,
+    "coding_cost": {
+      "currency": null,
+      "amount": null,
+      "status": "unknown"
+    },
+    "application_run_ids": [],
+    "scores": {},
+    "untested_categories": [],
+    "blocking_failures": [],
+    "evidence_paths": []
+  }
+}

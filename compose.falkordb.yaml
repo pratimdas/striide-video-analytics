@@ -1,0 +1,26 @@
+name: ${COMPOSE_PROJECT_NAME:-striideai-local-lab}
+services:
+  falkordb:
+    image: ${FALKORDB_IMAGE:-falkordb/falkordb:latest}
+    ports:
+      - "127.0.0.1:${FALKORDB_PORT:-6379}:6379"
+      - "127.0.0.1:${FALKORDB_BROWSER_PORT:-3000}:3000"
+    environment:
+      REDIS_ARGS: "--requirepass ${FALKORDB_PASSWORD:?Set FALKORDB_PASSWORD in .env} --appendonly yes --appendfsync everysec"
+      REDISCLI_AUTH: ${FALKORDB_PASSWORD:?Set FALKORDB_PASSWORD in .env}
+    volumes:
+      - falkordb_data:/var/lib/falkordb/data
+    healthcheck:
+      test: ["CMD-SHELL", "redis-cli ping | grep -qx PONG"]
+      interval: 3s
+      timeout: 3s
+      retries: 40
+      start_period: 10s
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
+volumes:
+  falkordb_data:

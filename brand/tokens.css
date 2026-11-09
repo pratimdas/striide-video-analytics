@@ -1,0 +1,4 @@
+:root{--paper:#FBF8F2;--ink:#12172A;--navy:#1E2540;--pitch:#2F7D54;--gold:#D9A441;--border:#E1DCD3;--radius:.625rem}
+body{background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600}
+a{color:var(--pitch)}

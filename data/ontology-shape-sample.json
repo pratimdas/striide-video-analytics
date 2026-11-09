@@ -1,0 +1,61 @@
+{
+  "nodes": [
+    {
+      "uid": "activity:cyclic",
+      "label": "ActivityType",
+      "props": {
+        "uid": "activity:cyclic",
+        "name": "cyclic",
+        "scope": "global",
+        "activityTypeId": "cyclic"
+      }
+    },
+    {
+      "uid": "sport:cricket",
+      "label": "Sport",
+      "props": {
+        "uid": "sport:cricket",
+        "name": "Cricket",
+        "scope": "sport",
+        "ontologyId": "cricket",
+        "aliases": [
+          "cricket",
+          "T20",
+          "ODI",
+          "Test cricket",
+          "The Hundred",
+          "kwik cricket",
+          "softball cricket",
+          "indoor cricket"
+        ],
+        "searchText": "Cricket | cricket | T20 | ODI | Test cricket | The Hundred | kwik cricket | softball cricket | indoor cricket",
+        "category": "bat-ball",
+        "supportTier": "bespoke",
+        "lateralityRule": "bowling arm = the wrist with peak speed at release; front foot = the foot nearer the bowler (batting) or the batter (bowling) at delivery",
+        "safetyMinAge": 8,
+        "bannedCues": [
+          "lock the knee",
+          "hyperextend"
+        ],
+        "sport": "cricket",
+        "release": "cricket@0.1.0",
+        "currentRelease": "cricket@0.1.0"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "type": "AFFECTS",
+      "from": "gap:american_football.G-01",
+      "to": "protocol:american_football.movement.stance_start@0.1.0",
+      "props": {
+        "key": "",
+        "sport": "american_football",
+        "release": "american_football@0.1.0"
+      },
+      "fromLabel": "Gap",
+      "toLabel": "Protocol"
+    }
+  ],
+  "note": "Shape sample only; import the full immutable source. This sample is not a self-contained graph."
+}

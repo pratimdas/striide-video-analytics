@@ -1,0 +1,33 @@
+{
+  "version": "unset",
+  "currency": "USD",
+  "effective_date": null,
+  "source": null,
+  "rates": {
+    "pegasus1.6": {
+      "input_per_million_tokens": null,
+      "output_per_million_tokens": null,
+      "per_video_minute": null,
+      "upload_or_storage": null
+    },
+    "gemini_planner": {
+      "input_per_million_tokens": null,
+      "output_per_million_tokens": null,
+      "cached_input_per_million_tokens": null,
+      "thinking_per_million_tokens": null
+    },
+    "gemini_inspector": {
+      "input_per_million_tokens": null,
+      "output_per_million_tokens": null,
+      "cached_input_per_million_tokens": null,
+      "thinking_per_million_tokens": null
+    }
+  },
+  "rules": [
+    "Null means unknown, never zero.",
+    "Do not combine incompatible token and video-minute rates for the same charge.",
+    "Account for minimum increments, tiers, allowances and cached/thinking tokens according to the actual account plan.",
+    "Only label cost reported if a provider actually reports currency cost.",
+    "Keep known-cost subtotal separate from unknown components."
+  ]
+}

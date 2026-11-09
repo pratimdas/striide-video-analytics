@@ -1,0 +1,10 @@
+{
+  "version": "local-approval-0",
+  "reviewed_by": [],
+  "approved_protocol_uids": [],
+  "approved_question_uids": [],
+  "approved_rubric_ids": [],
+  "approved_drill_uids": [],
+  "approved_content_urls": [],
+  "note": "Draft ontology items may be inspected internally but are not automatically approved for prescribing drills or publishing grades."
+}

@@ -1,0 +1,234 @@
+{
+  "BUILD_TASK.md": {
+    "bytes": 3394,
+    "sha256": "4bfb7f053256165d4e12ee741182dec823c2dbd0431150bdcb99a5bad0a181c0"
+  },
+  "CURSOR_START.md": {
+    "bytes": 688,
+    "sha256": "df01f51b6eea986442d0bec1525029fc67d584c92d6ecb9dcdeb64079860ca00"
+  },
+  "config.example.yaml": {
+    "bytes": 3419,
+    "sha256": "f73e98c34e2fe986720749c3db46420231d5530607575de460bf53221af8fcea"
+  },
+  "approved-content.example.json": {
+    "bytes": 352,
+    "sha256": "35524313797bf0af0c30072a8dc2e91644c13c63634522d08846700b14e56c0f"
+  },
+  "compose.falkordb.yaml": {
+    "bytes": 823,
+    "sha256": "7183c58026144df4678dcd3bf4c9c32e306c9f376910db8bd55d02baa4b972f0"
+  },
+  "README.md": {
+    "bytes": 6228,
+    "sha256": "2dd662086d0eb4a85018d733efee8ce0d63ba673e716358b7fe432800c6719f1"
+  },
+  "pricing.example.json": {
+    "bytes": 1090,
+    "sha256": "a219ef4a76251104fec38c95bce32068992b271b2e103f41a4423564c1ab0ac5"
+  },
+  "context.example.json": {
+    "bytes": 239,
+    "sha256": "50cd26fede0b1f3521156445e7973d32127e7c17fb87921d437cd3f15b306777"
+  },
+  ".cursorignore": {
+    "bytes": 125,
+    "sha256": "8105d418f5e2a34e5461d798f5b927d035680c47d092220cf267b2a4aa2d4672"
+  },
+  "CLAUDE_CODE_QUICKSTART.md": {
+    "bytes": 1920,
+    "sha256": "667a425e91daa2cb58bd5c2d48f5dbc63102a24300701fb2718acc842a06cb32"
+  },
+  ".gitignore": {
+    "bytes": 261,
+    "sha256": "c0c55b71298d4b99f014c801b3a33f06a1fbbcad8338eab75ee0d1b6b2eaaa69"
+  },
+  "CLAUDE.md": {
+    "bytes": 1700,
+    "sha256": "460b292aa864db663352e62bb62b0846b21b7d63fa2c5c3d7c0f86529066f9ef"
+  },
+  "AGENTS.md": {
+    "bytes": 1708,
+    "sha256": "8df5531e20e53ea0f2112063d1f1b9ddf41b7b279b672f35806335cc1824d614"
+  },
+  ".env.example": {
+    "bytes": 686,
+    "sha256": "726e12f7c141cbf2d0b2e7e0d13d59f205059e5be0f86af2a71074d1c7932b86"
+  },
+  "CLAUDE_CODE_START.md": {
+    "bytes": 699,
+    "sha256": "deb5490bfb6b941b4dd6724a9bb318629cf4a175bdaaf2844bfe43403128a09a"
+  },
+  "examples/report.fixture.json": {
+    "bytes": 748,
+    "sha256": "ce9edb1ceafdd2199089b1cc77018f468d432d5383f29244248bd45bec6ad0d4"
+  },
+  "examples/telemetry-demo.mjs": {
+    "bytes": 1108,
+    "sha256": "4c58c7d60aad9233b708668b38391b93dbcaabf5f87be86fd96efd6d32a4db85"
+  },
+  "examples/telemetry.mjs": {
+    "bytes": 3544,
+    "sha256": "86b43430886640159e506044142d8ea8009ab1066333f0828610cd23d2911313"
+  },
+  "examples/report-preview.html": {
+    "bytes": 6813,
+    "sha256": "54de9844707a19f7880b01ddf2d29051a397760a52d3de6db9eb047904968bf2"
+  },
+  "examples/telemetry.test.mjs": {
+    "bytes": 2163,
+    "sha256": "48904898f959b9def8a13d9e7e34715b8dfc5ca8c32915d5dad3fa86f03affab"
+  },
+  "contracts/lab-contract.schema.json": {
+    "bytes": 5220,
+    "sha256": "f28fc18afdbbe76f21db20faf60b823ab8167f58e0737e03a651f6ebebfee9d5"
+  },
+  "contracts/discovery.schema.json": {
+    "bytes": 3282,
+    "sha256": "f8b5e91baa81464f169457452c47799d4065fa4e5dcaf2a062c7503275adb00c"
+  },
+  "contracts/trace-span.schema.json": {
+    "bytes": 1185,
+    "sha256": "fb42e785f94b60c4b46a7e3893ab9e096ea51a037920b2551e53ef678861b205"
+  },
+  "contracts/inspection.schema.json": {
+    "bytes": 3836,
+    "sha256": "8e95a488a664cab6f05f9cdb0221ec1a893f8071a1786c7e010eccb2b71c9acd"
+  },
+  "data/ontology-shape-sample.json": {
+    "bytes": 1721,
+    "sha256": "0778d2eef937b0fed9bb5fab7e92827595b70a57475c159d365cd87f3c4d46a1"
+  },
+  "data/ontology-manifest.json": {
+    "bytes": 966,
+    "sha256": "ae83d724b5b0573137b7d1bd1f4d37c5316c2c88ef301927ab42bfaece08cde1"
+  },
+  "data/striide-ontology-all.json": {
+    "bytes": 11123605,
+    "sha256": "145700e7ac5e33070984abb4ffdc1f0ab0a9a0038b0b012b853828f16da2bd0e"
+  },
+  "data/recognition-profiles.draft.json": {
+    "bytes": 1410,
+    "sha256": "39c36fd608ed10227026babbb14f277fd594dfc380ce8d441bbf88a79db69f0b"
+  },
+  "prompts/discover.md": {
+    "bytes": 1066,
+    "sha256": "8f605bf6d60275e72417dac89905a9738886a4daa7f0293d306293728c1d31ad"
+  },
+  "prompts/inspect.md": {
+    "bytes": 1061,
+    "sha256": "fbc11e501b603c4cadd3975d30887510efa1e362148f5956204738e0f8dae4e8"
+  },
+  "prompts/planner.md": {
+    "bytes": 808,
+    "sha256": "3eea8e70464a51d244b503a5f4e914d70ee8aac0f9504e3404ffe7d6b1fc6986"
+  },
+  "evaluation/coding-agent-scorecard.json": {
+    "bytes": 1212,
+    "sha256": "9a30408ddce1fed0dfcac95dd59b8acb24813094b1eba1b003d4a4b63c690c24"
+  },
+  "evaluation/cases.example.json": {
+    "bytes": 1750,
+    "sha256": "78d18f59f3c800d47a8c63f8b8f005decf3978f2f367f0af47560c428322bd0a"
+  },
+  "brand/tokens.css": {
+    "bytes": 284,
+    "sha256": "5163033a2a0f1debfb8cfb73aa217dcb6d5af5b4e9c33852bbf44ca1a75b1f51"
+  },
+  "brand/AGENT.MD": {
+    "bytes": 3272,
+    "sha256": "c15afb28fdd3604cd12d9de3843cb1ec8d98debe709bc0d772094d801451bffd"
+  },
+  "brand/striideai-symbol.svg": {
+    "bytes": 1914,
+    "sha256": "9b5a2d42c1da60d8cf43b68e875e06a205eb4936712588422ca857d1fe2124c6"
+  },
+  "brand/striideai-wordmark.svg": {
+    "bytes": 10111,
+    "sha256": "3b8267208a7eaf2200f17845b3463ea03dddaa7967f036ab058c198b0349d7c2"
+  },
+  "brand/SOURCES.md": {
+    "bytes": 456,
+    "sha256": "69ea24286416a81a4deab908e34fa6dac7d20e2d92b0b9900915705ed42c5b05"
+  },
+  "brand/striideai-wordmark-invert.svg": {
+    "bytes": 10111,
+    "sha256": "1c0979c66761a5ac1237e80420f8e9944101c9931f1fe21fdae1c1ba194ecea7"
+  },
+  "bootstrap/falkordb.mjs": {
+    "bytes": 4532,
+    "sha256": "33fe83326e64d013f4853b3b6958d9bc58350a1e59a9f45a6f18e35bc18e1dd4"
+  },
+  "docs/02_REPORT_AND_UI_SPEC.md": {
+    "bytes": 5679,
+    "sha256": "965eeec621502a960d3fdd7c3748c846a27b611887a3b3c2b76a9dc57a5361c5"
+  },
+  "docs/00_LOCAL_FALKORDB_SETUP.md": {
+    "bytes": 4680,
+    "sha256": "6c10b9fc3b2505a0d4d47723d82c9b5a90594f051de7ebaea0cce3ca9e876678"
+  },
+  "docs/03_TELEMETRY_AND_EVALUATION.md": {
+    "bytes": 6660,
+    "sha256": "f09edeffebf04dd5ca77bb1b62e7807be69fb5f036997598bd95538c24273703"
+  },
+  "docs/architecture-cloud-v0.1.md": {
+    "bytes": 26496,
+    "sha256": "ce66f427bbaff20bcde50b0b58851844377ded5635c0a210c8460fe3f169adf2"
+  },
+  "docs/07_CODING_AGENT_COMPARISON.md": {
+    "bytes": 5899,
+    "sha256": "5cdd3115864ca8d131a9b8466053865a0bbd38d5425d09dd6a05df9b7245f88c"
+  },
+  "docs/05_PROVIDER_ADAPTERS.md": {
+    "bytes": 4189,
+    "sha256": "8132c5eb0874f574504355af712d8c78c995cfedc9393b2e58eeab1d745c4187"
+  },
+  "docs/04_ONTOLOGY_AND_CODE_MODE.md": {
+    "bytes": 4982,
+    "sha256": "cf927035e445a43134833752a534bcd3598c118eb9bc25ba3669ad0a3f873cb4"
+  },
+  "docs/06_PACK_VALIDATION.md": {
+    "bytes": 1774,
+    "sha256": "d7032e7431fb93cd418a47e6bbe9e79ee7af5aeaf4867a6c98f8b8d62476235a"
+  },
+  "docs/01_LOCAL_BUILD_SPEC.md": {
+    "bytes": 4965,
+    "sha256": "3dc69584e029de722b38afd95263a518638c9ece8a00c0d1e7073f088864a974"
+  },
+  "brand/fonts/font-2.ttf": {
+    "bytes": 96300,
+    "sha256": "437dc9f921739a6893128fa4dfc299424951148475815a9a213a46457878c42b"
+  },
+  "brand/fonts/Manrope-OFL.txt": {
+    "bytes": 4387,
+    "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+  },
+  "brand/fonts/google-fonts-source.css": {
+    "bytes": 1146,
+    "sha256": "82cb3e6d03f86f365f204275511e06d4948df4eebbe2a8651459ac79a680cdb2"
+  },
+  "brand/fonts/font-4.ttf": {
+    "bytes": 96188,
+    "sha256": "ea1f264039fed13fd36e6d6f49fcae4fe7007def02cf2972b5c7f6d6f1349d06"
+  },
+  "brand/fonts/fonts.css": {
+    "bytes": 741,
+    "sha256": "168adba57e0f4b92579b3e089c53ba743ae75be611899cc55d3370200ccfd017"
+  },
+  "brand/fonts/font-3.ttf": {
+    "bytes": 96348,
+    "sha256": "68ed4be49ec7d32f07b42f9232dc01ca1df7a77be1d9b0731aac74db58235f34"
+  },
+  "brand/fonts/font-1.ttf": {
+    "bytes": 96200,
+    "sha256": "ed335894f8d954263675f7e457bf657374d8b7be629be4dc43aef97c309ad3ae"
+  },
+  "brand/fonts/Fraunces-OFL.txt": {
+    "bytes": 4391,
+    "sha256": "bdf4c22802eaf804f998195871c6b8938aac2ac14b2d78a8bd66a6f1eced833b"
+  },
+  "brand/fonts/font-0.ttf": {
+    "bytes": 71632,
+    "sha256": "ff7cf63717c27756df857ca12045a83522569f7b561bedaff813a25274eb263f"
+  }
+}
