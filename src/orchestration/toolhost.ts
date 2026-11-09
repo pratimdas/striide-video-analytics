@@ -1,4 +1,7 @@
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
+import { randomUUID } from 'node:crypto';
+import { hashObject as requestKey } from '../util/hash.js';
 import { LabError, errorSummary } from '../util/errors.js';
 import { hashObject } from '../util/hash.js';
 import type { RunContext } from '../jobs/context.js';
@@ -24,6 +27,8 @@ export interface AssetInfo { asset_id: string; reused: boolean; polls: number; o
 export interface JobDeps {
   ctx: RunContext; db: LabDb; ontology: OntologyService; twelvelabs: TwelveLabsProvider; gemini: GeminiProvider; accountFingerprint: string;
   media: MediaManifest; context: DeclaredContext | null; ffmpeg: string; setState: (s: RunState, detail?: string) => void; root: SpanContext;
+  /** Completed provider responses from an interrupted run (resume). */
+  resume?: { fromRun: string; requests: Record<string, unknown> } | null;
 }
 
 export const TOOL_NAMES = ['media.describe', 'ontology.getCatalogue', 'ontology.getRecognitionProfiles', 'ontology.getProtocol', 'video.discover', 'media.extractEvidence', 'vision.inspect', 'assessment.validate', 'assessment.calculate', 'report.assemble'] as const;
@@ -105,6 +110,7 @@ export class ToolHost {
   assessmentRequested = false;
   proposal: { primary_protocol_uid?: string; notes?: string } | null = null;
   toolLog: ToolCallLog[] = [];
+  readonly checkpointRequests: Record<string, unknown> = {};
   private packetSeq = 0;
   private inspectSeq = 0;
   private framesUsed = 0;
@@ -114,6 +120,20 @@ export class ToolHost {
     this.deps = deps;
     this.seekPrepared = JSON.parse(readFileSync(deps.media.prepared.seek_map_file, 'utf8'));
     this.mediaIds = { prepared: deps.media.prepared.media_id, playback: deps.media.playback.media_id };
+  }
+
+  /** Reuse a completed response from the resumed run, recording a zero-usage cache hit with provenance. */
+  private async fromCheckpoint(key: string, span: SpanContext, role: 'discovery' | 'inspector' | 'followup', provider: 'twelvelabs' | 'gemini', model: string | null): Promise<unknown | undefined> {
+    const r = this.deps.resume;
+    if (!r || !(key in r.requests)) return undefined;
+    await span.child('cache_hit', { kind: 'resumed_request', role, from_run: r.fromRun, note: 'completed request reused on resume; no new provider usage' }, () => undefined);
+    const rec = { call_id: randomUUID(), span_id: null, provider, role, model, attempt: 1, is_retry: false, outcome: 'ok' as const, error_kind: null, http_status: null, request_id: null, finish_reason: null, usage: null, usage_source: 'not_applicable' as const, cost_usd: null, cost_status: 'not_applicable' as const, cost_note: 'reused from resumed run; original cost recorded there', duration_ms: 0, generation: true, cache_hit: true, reused_from_run: r.fromRun };
+    this.deps.ctx.calls.push(rec); this.deps.ctx.onCall?.(rec);
+    return r.requests[key];
+  }
+  private checkpoint(key: string, value: unknown): void {
+    this.checkpointRequests[key] = value;
+    writeFileSync(join(this.deps.ctx.runDir, 'checkpoint.requests.json'), JSON.stringify(this.checkpointRequests));
   }
 
   allQuestions(): Map<string, CompiledQuestion> {
@@ -231,11 +251,19 @@ export class ToolHost {
     await this.getCatalogue(span);
     const asset = await this.ensureAsset(span);
     this.deps.setState('discovering');
-    this.deps.ctx.budget.reserveModelRequest('discovery');
     const duration = this.describe().duration_s;
-    const res = await span.child('pegasus.discovery', { asset_id: asset.asset_id, model: this.deps.ctx.lc.config.providers.twelvelabs.model }, (c) => this.deps.twelvelabs.analyze(this.deps.ctx, c, { assetId: asset.asset_id, prompt: discoveryPrompt(this.catalogue!, this.deps.context, duration), schema: contract('discovery').schema, role: 'discovery', spanName: 'pegasus.discovery_request' }));
+    const prompt = discoveryPrompt(this.catalogue!, this.deps.context, duration);
+    const key = requestKey({ kind: 'discovery', prompt, prepared: this.deps.media.prepared.sha256, model: this.deps.ctx.lc.config.providers.twelvelabs.model });
+    let parsed = await this.fromCheckpoint(key, span, 'discovery', 'twelvelabs', this.deps.ctx.lc.config.providers.twelvelabs.model);
+    if (parsed === undefined) {
+      this.deps.ctx.budget.reserveModelRequest('discovery');
+      const res = await span.child('pegasus.discovery', { asset_id: asset.asset_id, model: this.deps.ctx.lc.config.providers.twelvelabs.model }, (c) => this.deps.twelvelabs.analyze(this.deps.ctx, c, { assetId: asset.asset_id, prompt, schema: contract('discovery').schema, role: 'discovery', spanName: 'pegasus.discovery_request' }));
+      parsed = res.parsed;
+    }
+    const res = { parsed };
     this.discoveryRaw = res.parsed;
     this.discovery = await span.child('parse_and_validate', { contract: 'discovery' }, (c) => { const d = validateDiscovery(res.parsed, this.catalogue!, duration); c.set({ candidates: d.candidates.length, windows: d.action_windows.length, notes: d.notes.length }); return d; });
+    this.checkpoint(key, res.parsed);
     this.deps.setState('comparing');
     this.compare = await span.child('candidate_compare', {}, (c) => { const cmp = compareCandidates(this.discovery!, this.deps.context, this.catalogue!); c.set({ primary: cmp.primary?.sport_uid ?? null, conflict: cmp.conflict, out_of_catalogue: cmp.out_of_catalogue }); return cmp; });
     return this.publicDiscovery();
@@ -308,9 +336,12 @@ export class ToolHost {
     const hypotheses = candidates.map((s) => { const c = this.discovery?.candidates.find((x) => x.sport_uid === s); return `${s}${c?.skill_uid ? ` / ${c.skill_uid}` : ''}${c ? ` (Pegasus uncertainty ${c.uncertainty})` : ''}`; });
     const text = inspectionText({ questions, hypotheses, ctx: this.deps.context, followupReason: a.followup ? a.reason! : null });
     const id = `in${++this.inspectSeq}`;
-    const res = await span.child(a.followup ? 'followup' : 'gemini.inspect', { inspection_id: id, packets: a.packet_ids, questions: questions.length, frames: fp.frames, bytes: fp.bytes }, (c) => this.deps.gemini.generate(this.deps.ctx, c, { role: a.followup ? 'followup' : 'inspector', system: inspectionSystem(), parts: [{ text }, ...fp.parts], schema: contract('inspection').schema, spanName: `gemini.${id}_request`, maxOutputTokens: this.deps.ctx.lc.config.providers.gemini.inspector_max_output_tokens, attributes: { inspection_id: id }, artifactSummary: fp.manifest }));
+    const ikey = requestKey({ kind: 'inspection', text, frames: packets.flatMap((p) => p.frames.map((f) => f.sha256)), model: this.deps.gemini.models.inspector, followup: !!a.followup });
+    const reused = await this.fromCheckpoint(ikey, span, a.followup ? 'followup' : 'inspector', 'gemini', this.deps.gemini.models.inspector);
+    const res = reused !== undefined ? { parsed: reused } : await span.child(a.followup ? 'followup' : 'gemini.inspect', { inspection_id: id, packets: a.packet_ids, questions: questions.length, frames: fp.frames, bytes: fp.bytes }, (c) => this.deps.gemini.generate(this.deps.ctx, c, { role: a.followup ? 'followup' : 'inspector', system: inspectionSystem(), parts: [{ text }, ...fp.parts], schema: contract('inspection').schema, spanName: `gemini.${id}_request`, maxOutputTokens: this.deps.ctx.lc.config.providers.gemini.inspector_max_output_tokens, attributes: { inspection_id: id }, artifactSummary: fp.manifest }));
     const approvedIds = [...this.deps.ontology.getContentApprovals().approved_drill_uids];
     const v = await span.child('parse_and_validate', { contract: 'inspection', inspection_id: id }, (c) => { const r = validateInspection(res.parsed, { questionIds: questions.map((q) => q.uid), packets, candidateSports: candidates, approvedContentIds: approvedIds, idPrefix: `${id}_f` }); c.set({ answers: r.answers.length, findings: r.findings.length, rejected: r.rejected.length }); return r; });
+    this.checkpoint(ikey, res.parsed);
     this.inspections.push({ inspection_id: id, followup: !!a.followup, reason: a.reason ?? null, packet_ids: a.packet_ids, question_uids: questions.map((q) => q.uid), result: v, model: this.deps.gemini.models.inspector, frames: fp.frames, bytes: fp.bytes });
     return { inspection_id: id, activity_verdict: v.activity_verdict, answers: v.answers.map((x) => ({ question_id: x.question_id, answer: x.answer, visibility: x.visibility, state: x.state })), findings: v.findings.length, rejected: v.rejected.length, limitations: v.limitations };
   }

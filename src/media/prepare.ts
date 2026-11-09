@@ -61,7 +61,7 @@ function targetDimensions(w: number, h: number, cfg: LabConfig['media']): { w: n
 async function transcodeH264(ffmpeg: string, input: string, output: string, probe: ProbeInfo, dims: { w: number; h: number }, signal?: AbortSignal): Promise<void> {
   const args = ['-hide_banner', '-nostdin', '-y', '-v', 'error', '-i', input, '-map', `0:${probe.video.index}`, '-map', '0:a:0?',
     // passthrough keeps each original frame's timing (variable frame rate is preserved, not resampled)
-    '-fps_mode', 'passthrough', '-enc_time_base', 'demux', '-vf', `scale=${dims.w}:${dims.h}:flags=bicubic,format=yuv420p`, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18',
+    '-fps_mode', 'passthrough', '-enc_time_base', 'demux', '-vf', `scale=${dims.w}:${dims.h}:flags=bicubic,format=yuv420p`, '-c:v', 'libx264', '-preset', 'veryfast', '-crf', '18', '-bf', '0', // no B-frame delay: first frame presents at t=0
     '-c:a', probe.audio?.codec === 'aac' ? 'copy' : 'aac', '-movflags', '+faststart', '-avoid_negative_ts', 'make_zero', '-map_metadata', '-1', output];
   const r = await runProcess(ffmpeg, args, { timeoutMs: 30 * 60 * 1000, signal, maxStdoutBytes: 1024 * 1024 });
   if (r.code !== 0) throw new LabError('media', 'Transcoding failed.', { details: { stderr: r.stderrTail.slice(-800) } });

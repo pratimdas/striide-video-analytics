@@ -7,7 +7,18 @@
   "engines": {
     "node": ">=22.13.0"
   },
-  "scripts": {},
+  "scripts": {
+    "doctor": "node --disable-warning=ExperimentalWarning --import tsx src/cli/doctor.ts",
+    "provider:smoke": "node --disable-warning=ExperimentalWarning --import tsx src/cli/provider-smoke.ts",
+    "ontology:import": "node --disable-warning=ExperimentalWarning --import tsx src/cli/ontology-import.ts",
+    "analyse": "node --disable-warning=ExperimentalWarning --import tsx src/cli/analyse.ts",
+    "ui": "node --disable-warning=ExperimentalWarning --import tsx src/cli/ui.ts",
+    "batch": "node --disable-warning=ExperimentalWarning --import tsx src/cli/batch.ts",
+    "cleanup": "node --disable-warning=ExperimentalWarning --import tsx src/cli/cleanup.ts",
+    "test": "node --disable-warning=ExperimentalWarning --import tsx --test --test-concurrency=1 test/*.test.ts",
+    "test:reference": "node --test examples/telemetry.test.mjs",
+    "build": "tsc -p tsconfig.json --noEmit && node --check src/orchestration/codemode/bootstrap.template.js && node --check programs/reviewed/default-v1.js"
+  },
   "dependencies": {
     "@google/genai": "3.0.0",
     "ajv": "8.20.0",

@@ -15,11 +15,11 @@ export function tmp(prefix = 'striide-test-'): string { return mkdtempSync(join(
  * Synthetic OFFLINE FIXTURE clip: frame N has luma ~= N*8, so any extracted frame can be identified.
  * Frame times are variable (interval grows), optionally offset, rotated, HEVC-encoded or low resolution.
  */
-export async function makeFixtureClip(dir: string, o: { name?: string; frames?: number; width?: number; height?: number; offset?: number; rotation?: number; codec?: 'h264' | 'hevc'; vfr?: boolean; audio?: boolean } = {}): Promise<string> {
+export async function makeFixtureClip(dir: string, o: { name?: string; frames?: number; width?: number; height?: number; offset?: number; rotation?: number; codec?: 'h264' | 'hevc'; vfr?: boolean; audio?: boolean; lumaStep?: number } = {}): Promise<string> {
   const frames = o.frames ?? 30, w = o.width ?? 320, h = o.height ?? 240;
   const out = join(dir, o.name ?? 'fixture.mp4');
   const setpts = o.vfr === false ? 'N/(30*TB)' : 'N*N/(1500*TB)+N/(30*TB)';
-  const args = ['-hide_banner', '-v', 'error', '-y', '-f', 'lavfi', '-i', `color=c=black:s=${w}x${h}:r=30:d=${(frames / 30).toFixed(4)},format=gray,geq=lum='N*8':cb=128:cr=128,settb=expr=1/1000,setpts=${setpts}`];
+  const args = ['-hide_banner', '-v', 'error', '-y', '-f', 'lavfi', '-i', `color=c=black:s=${w}x${h}:r=30:d=${(frames / 30).toFixed(4)},format=gray,geq=lum='N*${o.lumaStep ?? 8}':cb=128:cr=128,settb=expr=1/1000,setpts=${setpts}`];
   if (o.audio) args.push('-f', 'lavfi', '-i', 'sine=frequency=440:duration=2');
   args.push('-fps_mode', 'passthrough', '-enc_time_base', '1/1000', '-bf', '0', '-pix_fmt', 'yuv420p');
   args.push('-c:v', o.codec === 'hevc' ? 'libx265' : 'libx264');
