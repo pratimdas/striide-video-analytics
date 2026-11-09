@@ -2,6 +2,20 @@
 
 These are the exact steps for native Windows PowerShell. Commands were verified in a Linux build container (see BUILD_REPORT.md); the Windows-specific steps have not been executed on a Windows machine yet.
 
+## Quick start (one script)
+
+Project root for this build: `C:\Users\prati\OneDrive\Code\StriideAi\Claude`. The folder must not exist yet, or must be empty, for `git clone`.
+
+```powershell
+git clone -b claude/nifty-mayer-q2dumq https://github.com/pratimdas/striide-video-analytics "C:\Users\prati\OneDrive\Code\StriideAi\Claude"
+cd "C:\Users\prati\OneDrive\Code\StriideAi\Claude"
+powershell -ExecutionPolicy Bypass -File scripts\setup-windows.ps1
+```
+
+`scripts\setup-windows.ps1` checks the prerequisites, creates `.env` (with a generated FalkorDB password and the Claude-folder ports) and `config.local.yaml` (port 8788, videos in `.\videos`), runs `npm ci`, starts FalkorDB, imports and verifies the ontology, runs the offline tests and finishes with doctor. It is safe to run again. Afterwards add the four API key/model lines to `.env` and run doctor again. Sections 1–7 below are the same steps done by hand.
+
+OneDrive note: OneDrive will sync `node_modules`, videos and run outputs and may briefly lock files while syncing. Set the folder to "Always keep on this device" and pause syncing during analysis runs.
+
 ## 1. Prerequisites
 
 ```powershell
